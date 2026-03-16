@@ -7,9 +7,9 @@ extends Node
 # ── Node refs (assign in inspector or via $path) ──────────────────────────────
 @onready var window_manager:  Node    = $WindowManager
 @onready var strip_viewport:  SubViewportContainer = $StripViewport
-@onready var hud:             Control = $UILayer/HUD
-@onready var shop_panel:      Control = $UILayer/ShopPanel
-@onready var collection_log:  Control = $UILayer/CollectionLog
+@onready var hud:             Control = %HUD
+@onready var shop_panel:      Control = %ShopPanel
+@onready var collection_log:  Control = %CollectionLog
 
 # ── Lifecycle ─────────────────────────────────────────────────────────────────
 

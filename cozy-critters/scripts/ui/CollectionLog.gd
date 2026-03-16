@@ -8,9 +8,9 @@ extends Control
 @export var log_card_scene: PackedScene   ## Assign a simple LogCard.tscn (or reuse ShopCard)
 
 # ── Internal ──────────────────────────────────────────────────────────────────
-@onready var grid:         GridContainer = $ScrollContainer/Grid
-@onready var close_button: Button        = $CloseButton
-@onready var count_label:  Label         = $CountLabel
+@onready var grid:         GridContainer = %Grid
+@onready var close_button: Button        = %CloseButton
+@onready var count_label:  Label         = %CountLabel
 
 # Rarity colours for border tints
 const RARITY_COLOURS := {

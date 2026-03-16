@@ -9,57 +9,75 @@ anchors_preset = 0
 script = ExtResource("1_a0ju1")
 shop_card_scene = ExtResource("2_1rqtx")
 
-[node name="CloseButton" type="Button" parent="."]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CloseButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
 text = "X"
 
-[node name="TabContainer" type="TabContainer" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 31.0
-grow_horizontal = 2
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
 current_tab = 1
 
-[node name="Animals" type="Control" parent="TabContainer"]
+[node name="Animals" type="Control" parent="VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Animals"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/TabContainer/Animals"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="AnimalGrid" type="GridContainer" parent="TabContainer/Animals/ScrollContainer"]
+[node name="AnimalGrid" type="GridContainer" parent="VBoxContainer/TabContainer/Animals/ScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 columns = 4
 
-[node name="Items" type="Control" parent="TabContainer"]
+[node name="Items" type="Control" parent="VBoxContainer/TabContainer"]
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Items"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/TabContainer/Items"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="ItemGrid" type="GridContainer" parent="TabContainer/Items/ScrollContainer"]
+[node name="ItemGrid" type="GridContainer" parent="VBoxContainer/TabContainer/Items/ScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 columns = 4
 
-[node name="Upgrades" type="Control" parent="TabContainer"]
+[node name="Upgrades" type="Control" parent="VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Upgrades"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/TabContainer/Upgrades"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="UpgradeGrid" type="GridContainer" parent="TabContainer/Upgrades/ScrollContainer"]
+[node name="UpgradeGrid" type="GridContainer" parent="VBoxContainer/TabContainer/Upgrades/ScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 columns = 4

@@ -8,11 +8,11 @@ extends Control
 @export var shop_card_scene: PackedScene   ## Assign ShopCard.tscn
 
 # ── Internal node refs ────────────────────────────────────────────────────────
-@onready var tab_container:    TabContainer  = $TabContainer
-@onready var animal_grid:      GridContainer = $TabContainer/Animals/ScrollContainer/AnimalGrid
-@onready var item_grid:        GridContainer = $TabContainer/Items/ScrollContainer/ItemGrid
-@onready var upgrade_grid:     GridContainer = $TabContainer/Upgrades/ScrollContainer/UpgradeGrid
-@onready var close_button:     Button        = $CloseButton
+@onready var tab_container:    TabContainer  = %TabContainer
+@onready var animal_grid:      GridContainer = %AnimalGrid
+@onready var item_grid:        GridContainer = %ItemGrid
+@onready var upgrade_grid:     GridContainer = %UpgradeGrid
+@onready var close_button:     Button        = %CloseButton
 
 ## Where newly unlocked animals get placed on the strip (set from World or Main)
 @export var default_spawn_x: float = 200.0

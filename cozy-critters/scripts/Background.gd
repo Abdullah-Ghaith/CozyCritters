@@ -4,7 +4,7 @@
 extends CanvasLayer
 
 @onready var _sky : ColorRect    = $SkyGradient
-@onready var _ground: Sprite2D = $Ground
+@onready var _ground: TextureRect = $Ground
 
 # ── Sky colour palette (one Color per phase) ──────────────────────────────────
 const SKY_COLOURS := {

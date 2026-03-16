@@ -48,8 +48,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Ground" type="Sprite2D" parent="StripViewport/SubViewport/World/Background"]
+[node name="Ground" type="TextureRect" parent="StripViewport/SubViewport/World/Background"]
+custom_minimum_size = Vector2(2000, 0)
 texture = ExtResource("7_lhr70")
+stretch_mode = 1
 
 [node name="HabitatLayer" type="Node2D" parent="StripViewport/SubViewport/World"]
 
@@ -73,17 +75,41 @@ mouse_filter = 1
 layer = 128
 
 [node name="HUD" parent="UILayer" node_paths=PackedStringArray("shop_panel", "collection_log", "window_manager") instance=ExtResource("5_nxtc6")]
+unique_name_in_owner = true
 anchors_preset = 12
 anchor_top = 1.0
 anchor_bottom = 1.0
+offset_top = -48.0
+offset_bottom = -18.0
 grow_vertical = 0
 shop_panel = NodePath("../ShopPanel")
 collection_log = NodePath("../CollectionLog")
 window_manager = NodePath("../../WindowManager")
 
 [node name="ShopPanel" parent="UILayer" instance=ExtResource("6_jlsqs")]
-anchors_preset = 0
+unique_name_in_owner = true
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -500.0
+offset_right = 250.0
+offset_bottom = -150.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="CollectionLog" parent="UILayer" instance=ExtResource("7_q8u5g")]
+unique_name_in_owner = true
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -240.0
+offset_right = 300.0
+offset_bottom = 240.0
 
 [connection signal="gui_input" from="StripViewport/SubViewport/World/ForegroundLayer/ClickReceiver" to="StripViewport/SubViewport/World" method="_on_click_receiver_gui_input"]
