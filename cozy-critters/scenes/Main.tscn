@@ -1,0 +1,89 @@
+[gd_scene load_steps=11 format=3 uid="uid://ch4i2ber8b5mr"]
+
+[ext_resource type="Script" uid="uid://dwgmgtj50d0f7" path="res://scripts/Main.gd" id="1_rvslj"]
+[ext_resource type="Script" uid="uid://dly8wlwcvxq51" path="res://scripts/WindowManager.gd" id="2_0bbpv"]
+[ext_resource type="Script" uid="uid://c7dcg2y7upp8o" path="res://scripts/World.gd" id="3_0bbpv"]
+[ext_resource type="PackedScene" uid="uid://b1mkvpyqi5dwc" path="res://scenes/AnimalInstance.tscn" id="4_q8u5g"]
+[ext_resource type="Script" uid="uid://cvlgvwphwvq8u" path="res://scripts/Background.gd" id="4_rarhs"]
+[ext_resource type="PackedScene" uid="uid://bnxtyyy7axndi" path="res://scenes/HabitatItem.tscn" id="5_lhr70"]
+[ext_resource type="PackedScene" uid="uid://d28l2kkk6u31q" path="res://scripts/ui/HUD.tscn" id="5_nxtc6"]
+[ext_resource type="PackedScene" uid="uid://cwm7f5tvces8h" path="res://scenes/ui/ShopPanel.tscn" id="6_jlsqs"]
+[ext_resource type="Texture2D" uid="uid://c22ldj145cw76" path="res://assets/RepeatingBackground.png" id="7_lhr70"]
+[ext_resource type="PackedScene" uid="uid://crvojobjmkjcd" path="res://scenes/ui/CollectionLog.tscn" id="7_q8u5g"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_rvslj")
+
+[node name="WindowManager" type="Node" parent="."]
+script = ExtResource("2_0bbpv")
+
+[node name="StripViewport" type="SubViewportContainer" parent="."]
+custom_minimum_size = Vector2(0, 150)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="StripViewport"]
+handle_input_locally = false
+size = Vector2i(1152, 150)
+render_target_update_mode = 4
+
+[node name="World" type="Node2D" parent="StripViewport/SubViewport"]
+script = ExtResource("3_0bbpv")
+animal_scene = ExtResource("4_q8u5g")
+item_scene = ExtResource("5_lhr70")
+
+[node name="Background" type="CanvasLayer" parent="StripViewport/SubViewport/World"]
+layer = -10
+script = ExtResource("4_rarhs")
+
+[node name="SkyGradient" type="ColorRect" parent="StripViewport/SubViewport/World/Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Ground" type="Sprite2D" parent="StripViewport/SubViewport/World/Background"]
+texture = ExtResource("7_lhr70")
+
+[node name="HabitatLayer" type="Node2D" parent="StripViewport/SubViewport/World"]
+
+[node name="AnimalLayer" type="Node2D" parent="StripViewport/SubViewport/World"]
+
+[node name="ForegroundLayer" type="CanvasLayer" parent="StripViewport/SubViewport/World"]
+layer = 10
+
+[node name="AcornParticles" type="GPUParticles2D" parent="StripViewport/SubViewport/World/ForegroundLayer"]
+
+[node name="ClickReceiver" type="Control" parent="StripViewport/SubViewport/World/ForegroundLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="HUD" parent="UILayer" node_paths=PackedStringArray("shop_panel", "collection_log", "window_manager") instance=ExtResource("5_nxtc6")]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+shop_panel = NodePath("../ShopPanel")
+collection_log = NodePath("../CollectionLog")
+window_manager = NodePath("../../WindowManager")
+
+[node name="ShopPanel" parent="UILayer" instance=ExtResource("6_jlsqs")]
+anchors_preset = 0
+
+[node name="CollectionLog" parent="UILayer" instance=ExtResource("7_q8u5g")]
+
+[connection signal="gui_input" from="StripViewport/SubViewport/World/ForegroundLayer/ClickReceiver" to="StripViewport/SubViewport/World" method="_on_click_receiver_gui_input"]

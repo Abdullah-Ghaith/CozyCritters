@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://r67biheredgl"]
+
+[ext_resource type="Script" uid="uid://dcuhury2oxl4h" path="res://scripts/ui/ShopCard.gd" id="1_h1ex4"]
+
+[node name="ShopCard" type="PanelContainer"]
+script = ExtResource("1_h1ex4")
+
+[node name="Vbox" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="IconRect" type="TextureRect" parent="Vbox"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="Vbox"]
+layout_mode = 2
+
+[node name="CostLabel" type="Label" parent="Vbox"]
+layout_mode = 2
+
+[node name="BuyButton" type="Button" parent="Vbox"]
+layout_mode = 2

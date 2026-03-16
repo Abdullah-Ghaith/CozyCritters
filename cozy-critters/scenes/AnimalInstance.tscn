@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1mkvpyqi5dwc"]
+
+[ext_resource type="Script" uid="uid://0tavd4a5s7jq" path="res://scripts/AnimalInstance.gd" id="1_bc8nq"]
+[ext_resource type="Script" uid="uid://bxxm2hxy3vw4x" path="res://scripts/AnimalStateMachine.gd" id="2_xa62o"]
+[ext_resource type="Script" uid="uid://bnvsxdu47rhoy" path="res://scripts/DragHandler.gd" id="3_qdl6b"]
+
+[node name="AnimalInstance" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_bc8nq")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+
+[node name="DragArea" type="Area2D" parent="."]
+
+[node name="DragShape" type="CollisionShape2D" parent="DragArea"]
+
+[node name="HelperIcon" type="Sprite2D" parent="."]
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_xa62o")
+
+[node name="DragHandler" type="Node" parent="."]
+script = ExtResource("3_qdl6b")
+ground_y = 110.0
+metadata/_custom_type_script = "uid://bnvsxdu47rhoy"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false

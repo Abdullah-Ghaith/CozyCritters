@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwm7f5tvces8h"]
+
+[ext_resource type="Script" uid="uid://0g7y6n4k6d8o" path="res://scripts/ui/ShopPanel.gd" id="1_a0ju1"]
+[ext_resource type="PackedScene" uid="uid://r67biheredgl" path="res://scenes/ui/ShopCard.tscn" id="2_1rqtx"]
+
+[node name="ShopPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_a0ju1")
+shop_card_scene = ExtResource("2_1rqtx")
+
+[node name="CloseButton" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "X"
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
+current_tab = 1
+
+[node name="Animals" type="Control" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Animals"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimalGrid" type="GridContainer" parent="TabContainer/Animals/ScrollContainer"]
+layout_mode = 2
+columns = 4
+
+[node name="Items" type="Control" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Items"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ItemGrid" type="GridContainer" parent="TabContainer/Items/ScrollContainer"]
+layout_mode = 2
+columns = 4
+
+[node name="Upgrades" type="Control" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Upgrades"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="UpgradeGrid" type="GridContainer" parent="TabContainer/Upgrades/ScrollContainer"]
+layout_mode = 2
+columns = 4
