@@ -1,57 +1,58 @@
 ## HUD.gd
 extends Control
- 
+
 @onready var acorn_label: Label  = %AcornLabel
 @onready var shop_button: Button = %ShopButton
 @onready var log_button:  Button = %LogButton
 @onready var min_button:  Button = %MinimizeButton
- 
+
 @export var shop_panel:     Control = null
 @export var collection_log: Control = null
 @export var window_manager: Node    = null
- 
+
 func _ready() -> void:
 	GameState.acorns_changed.connect(_on_acorns_changed)
 	_on_acorns_changed(GameState.acorns)
- 
 	shop_button.pressed.connect(_on_shop_pressed)
 	log_button.pressed.connect(_on_log_pressed)
 	min_button.pressed.connect(_on_minimise_pressed)
- 
 	if window_manager:
 		window_manager.strip_toggled.connect(_on_strip_toggled)
- 
+	_set_panel_open(shop_panel, false)
+	_set_panel_open(collection_log, false)
+
 func _on_acorns_changed(new_total: int) -> void:
 	acorn_label.text = _format_acorns(new_total)
- 
+
 func _on_shop_pressed() -> void:
-	if shop_panel == null:
-		return
-	shop_panel.visible = !shop_panel.visible
-	if shop_panel.visible:
-		window_manager.on_panel_opened()
-	else:
-		window_manager.on_panel_closed()
- 
+	var opening := not (shop_panel != null and shop_panel.visible)
+	if opening:
+		_set_panel_open(collection_log, false)
+	_set_panel_open(shop_panel, opening)
+
 func _on_log_pressed() -> void:
-	if collection_log == null:
+	var opening := not (collection_log != null and collection_log.visible)
+	if opening:
+		_set_panel_open(shop_panel, false)
+	_set_panel_open(collection_log, opening)
+
+## visible = show/hide, mouse_filter = allow/block clicks
+func _set_panel_open(panel: Control, open: bool) -> void:
+	if panel == null:
 		return
-	collection_log.visible = !collection_log.visible
-	if collection_log.visible:
-		window_manager.on_panel_opened()
-	else:
-		window_manager.on_panel_closed()
- 
+	panel.visible = open
+	panel.mouse_filter = Control.MOUSE_FILTER_STOP if open else Control.MOUSE_FILTER_IGNORE
+
 func _on_minimise_pressed() -> void:
 	if window_manager:
 		window_manager.toggle_minimise()
- 
+
 func _on_strip_toggled(is_minimised: bool) -> void:
 	acorn_label.visible = not is_minimised
 	shop_button.visible = not is_minimised
 	log_button.visible  = not is_minimised
 	min_button.text     = "▲" if is_minimised else "▼"
- 
+
 func _format_acorns(n: int) -> String:
 	if n >= 1_000_000:
 		return "%.1fM 🌰" % (n / 1_000_000.0)
