@@ -23,6 +23,13 @@ ItemRegistry="*res://autoloads/ItemRegistry.gd"
 UpgradeRegistry="*res://autoloads/UpgradeRegistry.gd"
 DayNightClock="*res://autoloads/DayNightClock.gd"
 
+[display]
+
+window/size/transparent=true
+window/per_pixel_transparency/allowed=true
+
 [rendering]
 
-renderer/rendering_method="mobile"
+renderer/rendering_method="gl_compatibility"
+environment/defaults/default_clear_color=Color(0, 0, 0, 0)
+viewport/transparent_background=true
